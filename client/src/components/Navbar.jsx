@@ -2,16 +2,16 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import { Link as LinkR, NavLink } from "react-router-dom";
 import LogoImg from "../utils/Images/Logo.png";
-// import {
-//   FavoriteBorder,
-//   MenuRounded,
-//   SearchRounded,
-//   ShoppingCartOutlined,
-// } from "@mui/icons-material";
-// import Button from "./Button";
-// import { Avatar } from "@mui/material";
-// import { useDispatch } from "react-redux";
-// import { logout } from "../redux/reducers/UserSlice";
+import {
+  FavoriteBorder,
+  MenuRounded,
+  SearchRounded,
+  ShoppingCartOutlined,
+} from "@mui/icons-material";
+import Button from "./Button";
+import { Avatar } from "@mui/material";
+import { useDispatch } from "react-redux";
+import { logout } from "../redux/reducers/UserSlice";
 
 const Nav = styled.div`
   background-color: ${({ theme }) => theme.bg};
@@ -146,11 +146,11 @@ const TextButton = styled.span`
 
 const Navbar = ({ setOpenAuth, openAuth, currentUser }) => {
   const [isOpen, setIsOpen] = useState(false);
-  // const dispatch = useDispatch();
+  const dispatch = useDispatch();
   return (
     <Nav>
       <NavContainer>
-        {/* <MobileIcon onClick={() => setIsOpen(!isOpen)}>
+        <MobileIcon onClick={() => setIsOpen(!isOpen)}>
           <MenuRounded style={{ color: "inherit" }} />
         </MobileIcon>
         <NavLogo to="/">
@@ -170,7 +170,7 @@ const Navbar = ({ setOpenAuth, openAuth, currentUser }) => {
           {currentUser && (
             <Avatar src={currentUser?.img}>{currentUser?.name[0]}</Avatar>
           )}
-        </MobileIcons> */}
+        </MobileIcons>
 
         <NavItems>
           <Navlink to="/">Home</Navlink>
@@ -193,7 +193,7 @@ const Navbar = ({ setOpenAuth, openAuth, currentUser }) => {
             <Navlink to="/contact" onClick={() => setIsOpen(false)}>
               Contact
             </Navlink>
-            {/* {currentUser ? (
+            {currentUser ? (
               <>
                 <TextButton onClick={() => dispatch(logout())}>
                   Logout
@@ -218,11 +218,11 @@ const Navbar = ({ setOpenAuth, openAuth, currentUser }) => {
                   onClick={() => setOpenAuth(true)}
                 />
               </div>
-            )} */}
+            )}
           </MobileMenu>
         )}
 
-        {/* <ButtonContainer>
+        <ButtonContainer>
           <Navlink to="/search">
             <SearchRounded sx={{ color: "inherit", fontSize: "30px" }} />
           </Navlink>
@@ -244,7 +244,7 @@ const Navbar = ({ setOpenAuth, openAuth, currentUser }) => {
               <Button text="Sign In" small onClick={() => setOpenAuth(true)} />
             </>
           )}
-        </ButtonContainer> */}
+        </ButtonContainer>
       </NavContainer>
     </Nav>
   );
