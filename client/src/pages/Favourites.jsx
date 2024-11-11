@@ -1,12 +1,8 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
-import { category } from "../utils/data";
-import HeaderImage from "../utils/Images/Header.png";
-import ProductCategoryCard from "../components/cards/ProductCategoryCard";
 import ProductsCard from "../components/cards/ProductsCard";
-import { getAllProducts } from "../api";
+import { getFavourite } from "../api";
 import { CircularProgress } from "@mui/material";
-
 const Container = styled.div`
   padding: 20px 30px;
   padding-bottom: 200px;
@@ -28,10 +24,6 @@ const Section = styled.div`
   flex-direction: column;
   gap: 28px;
 `;
-const Img = styled.img`
-  width: 100%;
-  max-width: 1200px;
-`;
 const Title = styled.div`
   font-size: 28px;
   font-weight: 500;
@@ -48,14 +40,14 @@ const CardWrapper = styled.div`
     gap: 16px;
   }
 `;
-
-const Home = () => {
+const Favourites = () => {
   const [loading, setLoading] = useState(false);
   const [products, setProducts] = useState([]);
 
   const getProducts = async () => {
     setLoading(true);
-    await getAllProducts().then((res) => {
+    const token = localStorage.getItem("krist-app-token");
+    await getFavourite(token).then((res) => {
       setProducts(res.data);
       setLoading(false);
     });
@@ -68,31 +60,21 @@ const Home = () => {
   return (
     <Container>
       <Section>
-        <Img src={HeaderImage} />
-      </Section>
-      <Section>
-        <Title>Food Categories</Title>
+        <Title>Your Favourites</Title>
         <CardWrapper>
-          {category.map((category) => (
-            <ProductCategoryCard category={category} />
-          ))}
+          {loading ? (
+            <CircularProgress />
+          ) : (
+            <>
+              {products.map((product) => (
+                <ProductsCard product={product} />
+              ))}
+            </>
+          )}
         </CardWrapper>
-      </Section>
-
-      <Section>
-        <Title>Most Popular</Title>
-        {loading ? (
-          <CircularProgress />
-        ) : (
-          <CardWrapper>
-            {products.map((product) => (
-              <ProductsCard product={product} />
-            ))}
-          </CardWrapper>
-        )}
       </Section>
     </Container>
   );
 };
 
-export default Home;
+export default Favourites;
