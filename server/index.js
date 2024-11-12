@@ -29,7 +29,7 @@ app.get("/", async (req, res) => {
   res.status(200).json({
     message: "Hello developers ",
   });
-});
+}); 
 
 const connectDB = () => {
   mongoose.set("strictQuery", true); 
@@ -45,7 +45,7 @@ const connectDB = () => {
 const startServer = async () => {
   try {
     connectDB();
-    app.listen(8080, () => console.log("Server started on port 8080"));
+    app.listen(5000, () => console.log("Server started on port 5000"));
   } catch (error) {
     console.log(error);
   }
