@@ -32,7 +32,7 @@ app.get("/", async (req, res) => {
 });
 
 const connectDB = () => {
-  mongoose.set("strictQuery", true);
+  mongoose.set("strictQuery", true); 
   mongoose
     .connect(process.env.MONGODB_URL)
     .then(() => console.log("Connected to Mongo DB"))
