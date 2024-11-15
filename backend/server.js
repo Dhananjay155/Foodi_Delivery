@@ -17,7 +17,7 @@ const port =  4000;
 app.use(express.json())
 
 const allowedOrigins = [
-    "https://food-delivery-website-gamma.vercel.app",
+    "https://foodi-delivery-gkth.vercel.app/",
     "https://food-delivery-website-admin.vercel.app"
 ];
 
